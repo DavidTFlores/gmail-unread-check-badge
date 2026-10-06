@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Gmail Unread Badge",
+  "version": "1.0.0",
+  "description": "Shows the total unread count from your open Gmail tabs as a badge. No Gmail API, no OAuth - it only reads tab titles.",
+  "permissions": ["tabs", "alarms", "storage"],
+  "host_permissions": ["https://mail.google.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["favicon-badge.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Gmail Unread Badge",
+    "default_icon": {
+      "128": "icons/icon.png"
+    }
+  },
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/icon.png"],
+      "matches": ["https://mail.google.com/*"]
+    }
+  ]
+}
